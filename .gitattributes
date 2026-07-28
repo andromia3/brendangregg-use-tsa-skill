@@ -1,0 +1,15 @@
+# Normalize text files to LF on checkin.
+* text=auto eol=lf
+
+# Markdown stays text.
+*.md text eol=lf
+
+# Source HTML snapshots stay as-is.
+*.html text eol=lf
+
+# Binary assets (if any are added later)
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.pdf binary

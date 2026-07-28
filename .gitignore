@@ -1,0 +1,54 @@
+# OS cruft
+.DS_Store
+.AppleDouble
+.LSOverride
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+*.lnk
+
+# Editor / IDE
+*.swp
+*.swo
+*~
+.*.sw[a-p]
+.netrwhist
+.idea/
+.vs/
+*.code-workspace
+.project
+.classpath
+.settings/
+*.sublime-project
+*.sublime-workspace
+
+# Tooling that may appear when the skill is exercised
+__pycache__/
+*.py[cod]
+node_modules/
+.npm/
+.yarn/
+
+# Logs and local scratch
+*.log
+logs/
+tmp/
+scratch/
+
+# Extracted text dumps of the source HTML pages (kept out of git;
+# they are regenerable from the .html sources)
+*.extracted.txt
+
+# Source HTML snapshots (brendangregg.com pages) are authoring inputs,
+# not redistributed — everything published here is original distilled text
+/usemethod.html
+/tsamethod.html
+
+# Secrets — never commit these
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+id_rsa*

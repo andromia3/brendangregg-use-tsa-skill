@@ -65,8 +65,13 @@ This is **Off-CPU Analysis** territory (full detail:
   (higher overhead — event dump vs eBPF in-kernel summaries).
 - **Filter noise:** involuntary context switches pollute stacks on
   CPU-saturated systems. They happen in `TASK_RUNNING (0)`; the interesting
-  blocking states are `TASK_INTERRUPTIBLE (1)` and `TASK_UNINTERRUPTIBLE (2)`
-  → `offcputime --state 2`.
+  blocking states include `TASK_INTERRUPTIBLE (1)` and `TASK_UNINTERRUPTIBLE (2)`.
+  BCC's `--state` is a bitmask: `--state 3` includes either of these states;
+  `--state 2` selects only uninterruptible waits and can omit interruptible
+  lock/condition-variable waits. Choose the mask for the question, and bound
+  the capture, for example `offcputime -p PID --state 3 1` (one second).
+  Confirm local tool support and acceptable overhead before running.
+  Source: [BCC offcputime state filtering](https://github.com/iovisor/bcc/blob/c398a9a7a41cba623b520cda27457b92d7fcad2b/tools/offcputime.py).
 - **Follow the stack to a resource:** a stack ending in `io_schedule()` →
   storage → `iostat -xnz 1`; network → `ss`, `tcplife`; page-ins → memory.
 - **Pre-eBPF fallbacks:** SystemTap, perf event logging, sampling

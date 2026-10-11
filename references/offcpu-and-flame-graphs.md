@@ -34,7 +34,12 @@ blocking event in any application without knowing the application.
   timeslice (common under CPU saturation); the captured stack shows no logical
   reason to block — a tell-tale sign. On Linux these occur in state
   `TASK_RUNNING (0)`; interesting blocking events are `TASK_INTERRUPTIBLE (1)`
-  and `TASK_UNINTERRUPTIBLE (2)` (filter: `offcputime --state 2`).
+  and `TASK_UNINTERRUPTIBLE (2)`. BCC's `--state` uses a bitmask: `--state 3`
+  includes either, while `--state 2` deliberately selects only uninterruptible
+  waits and can omit interruptible lock/condition-variable waits. Use an
+  explicit finite capture duration and choose the mask for the question;
+  verify local tool support and overhead first. Source:
+  [BCC offcputime state filtering](https://github.com/iovisor/bcc/blob/c398a9a7a41cba623b520cda27457b92d7fcad2b/tools/offcputime.py).
 - Interrupts
 
 ### Procedure (Linux/eBPF)

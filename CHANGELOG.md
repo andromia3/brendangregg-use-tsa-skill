@@ -6,6 +6,12 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+### Fixed
+
+- Explain BCC offcputime's state bitmask in both Linux/off-CPU references:
+  state 3 includes interruptible and uninterruptible waits; state 2 includes
+  only uninterruptible waits. Add a bounded example and pinned source.
+
 ## [1.0.0] - 2026-07-28
 
 Initial release.
